@@ -1,0 +1,30 @@
+name: ComplexWorkflow
+
+on: push
+
+jobs:
+    job1: 
+        name: First Job
+        runs-on: ubuntu-latest
+        steps:
+           - name: Step one
+             run: env | sort
+    job2: 
+        name: Second Job
+        runs-on: windows-latest
+        steps:
+           - name: Step one
+             run: "Get-ChildItem Env: | Sort-Object Name"
+    job3: 
+        name: Third Job
+        runs-on: macos-latest
+        steps:
+           - name: Step one
+             run: printenv
+    job4: 
+        name: Forth Job
+        runs-on: ubuntu-latest
+        needs: [job1,job2,job3]
+        steps:
+           - name: Step one
+             run: env | sort
