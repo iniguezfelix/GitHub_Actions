@@ -1,0 +1,22 @@
+name: artifact_challenge
+
+on: [push]
+
+env:
+  ARTIFACT_NAME: hello-server
+  FILE_NAME: test
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v1
+      
+    - name: Upload artifact for linux
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
+        path: ./${{ env.FILE_NAME }}
